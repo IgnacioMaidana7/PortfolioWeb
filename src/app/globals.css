@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+/* ============================================
+   TAILWIND CSS v4 - Dark Mode Configuration
+   ============================================ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   DESIGN SYSTEM - CSS Variables
+   "Soft Light" vs "Deep Dark" Theme
+   ============================================ */
+
+/* Light Mode (Soft Light) - Evita blanco puro */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f1f5f9;
+  /* Slate-100 - Fondo principal más profundo */
+  --surface: #f8fafc;
+  /* Slate-50 - Tarjetas y superficies suaves */
+  --text-primary: #1e293b;
+  /* Slate-800 - Texto suave */
+  --text-secondary: #64748b;
+  /* Slate-500 - Secundario equilibrado */
+  --border: #cbd5e1;
+  /* Slate-300 - Definición sutil */
+  --primary: #4f46e5;
+  /* Indigo-600 - Color principal */
+  --primary-hover: #4338ca;
+  /* Indigo-700 - Hover del primario */
 }
 
+/* Dark Mode (Deep Dark) */
+.dark {
+  --background: #0f172a;
+  /* Slate-900 - Fondo principal profundo */
+  --surface: #1e293b;
+  /* Slate-800 - Tarjetas y modales */
+  --text-primary: #f8fafc;
+  /* Slate-50 - Texto principal */
+  --text-secondary: #94a3b8;
+  /* Slate-400 - Texto secundario */
+  --border: #334155;
+  /* Slate-700 - Bordes */
+  --primary: #6366f1;
+  /* Indigo-500 - Color principal */
+  --primary-hover: #818cf8;
+  /* Indigo-400 - Hover del primario */
+}
+
+/* ============================================
+   TAILWIND THEME - Mapeo de Variables
+   ============================================ */
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   BASE STYLES
+   ============================================ */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* ============================================
+   GLOBAL TRANSITIONS - Optimizado para fluidez
+   ============================================ */
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Transición optimizada solo en body para evitar pérdida de FPS */
+body {
+  will-change: background-color, color;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+}
+
+/* Clase utilitaria para elementos que necesitan transición de tema */
+.theme-transition {
+  transition: background-color 200ms ease-out,
+    border-color 200ms ease-out,
+    color 200ms ease-out;
+}
+
+/* Respeta preferencias de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after,
+  body {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================
+   UTILITY STYLES
+   ============================================ */
+
+/* Cursor pointer para elementos interactivos */
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* Custom scrollbar - Light mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: var(--text-primary);
 }
