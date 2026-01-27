@@ -139,3 +139,13 @@ a,
   background: rgba(99, 102, 241, 0.3);
   color: var(--text-primary);
 }
+
+/* ============================================
+   MODAL BLUR EFFECT - Blur header when modal is open
+   ============================================ */
+body[data-modal-open="true"] nav {
+  filter: blur(4px);
+  opacity: 0.5;
+  pointer-events: none;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}

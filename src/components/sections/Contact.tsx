@@ -246,23 +246,17 @@ export default function Contact() {
             <div className="space-y-4">
               {contactInfo.map((item) => {
                 const Icon = item.icon;
-                const Component = item.href ? motion.a : motion.div;
-                const componentProps = item.href
-                  ? {
-                    href: item.href,
-                    target: item.href.startsWith("mailto") ? undefined : "_blank",
-                    rel: "noopener noreferrer",
-                  }
-                  : {};
 
                 return (
-                  <Component
+                  <motion.div
                     key={item.label}
-                    {...componentProps}
-                    className="group flex items-center gap-4 p-4 rounded-xl bg-surface border border-border hover:border-indigo-400 dark:hover:border-indigo-500/30 shadow-sm transition-all duration-300 cursor-pointer"
-                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-border shadow-sm"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center group-hover:bg-indigo-200 dark:group-hover:bg-indigo-500/20 transition-colors">
+                    <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                     </div>
                     <div>
@@ -273,10 +267,7 @@ export default function Contact() {
                         {item.value}
                       </p>
                     </div>
-                    {item.href && (
-                      <ArrowUpRight className="w-5 h-5 text-slate-400 dark:text-slate-500 ml-auto group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors" />
-                    )}
-                  </Component>
+                  </motion.div>
                 );
               })}
             </div>
