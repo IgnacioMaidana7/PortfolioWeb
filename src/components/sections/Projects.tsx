@@ -5,6 +5,14 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { SectionHeader, ProjectCard, ProjectModal } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
 
+interface ProjectDetails {
+  challenge: string;
+  solution: string;
+  decisions: string;
+  obstacles: string;
+  myRole: string;
+}
+
 interface Project {
   id: string;
   title: string;
@@ -13,6 +21,7 @@ interface Project {
   tech: string[];
   highlights: string[];
   images: string[];
+  details?: ProjectDetails;
 }
 
 export default function Projects() {
