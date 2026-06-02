@@ -45,9 +45,9 @@ export default function ImageGallery({
 
     if (!images || images.length === 0) {
         return (
-            <div className="w-full aspect-[4/3] rounded-xl bg-slate-200 dark:bg-slate-700/50 flex flex-col items-center justify-center gap-3">
-                <ImageOff className="w-12 h-12 text-slate-400 dark:text-slate-500" />
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+            <div className="w-full aspect-[4/3] rounded-xl bg-surface border border-border flex flex-col items-center justify-center gap-3">
+                <ImageOff className="w-12 h-12 text-text-secondary" />
+                <p className="text-sm text-text-secondary">
                     No hay imágenes disponibles
                 </p>
             </div>
@@ -57,7 +57,7 @@ export default function ImageGallery({
     return (
         <div className="space-y-4">
             {/* Main Image - Adaptive aspect ratio */}
-            <div className="relative w-full aspect-[4/3] md:aspect-[3/2] rounded-xl overflow-hidden bg-slate-200 dark:bg-slate-700/50">
+            <div className="relative w-full aspect-[4/3] md:aspect-[3/2] rounded-xl overflow-hidden bg-surface border border-border">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -155,8 +155,8 @@ export default function ImageGallery({
                             key={image}
                             onClick={() => handleManualNavigation(index)}
                             className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${index === currentIndex
-                                    ? "border-indigo-500 dark:border-indigo-400 ring-2 ring-indigo-500/30 scale-105"
-                                    : "border-transparent hover:border-slate-400 dark:hover:border-slate-500 opacity-70 hover:opacity-100"
+                                    ? "border-primary ring-2 ring-primary/20 scale-105"
+                                    : "border-transparent hover:border-border opacity-70 hover:opacity-100"
                                 }`}
                         >
                             <Image

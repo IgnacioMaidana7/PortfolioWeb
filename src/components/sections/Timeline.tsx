@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, Briefcase, Calendar } from "lucide-react";
+import { SectionHeader } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
 
 interface TimelineItem {
@@ -58,31 +59,22 @@ export default function Timeline() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.18 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.09 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -24 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
     <section id="timeline" className="py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
-            Trayectoria
-          </h2>
-          <p className="text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">
-            Mi camino en el desarrollo de software y gestión de proyectos
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Trayectoria"
+          description="Mi camino en el desarrollo de software y gestión de proyectos"
+          align="center"
+        />
 
         <motion.div
           ref={ref}

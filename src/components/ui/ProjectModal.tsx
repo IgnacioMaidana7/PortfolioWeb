@@ -48,11 +48,11 @@ function DetailSection({ icon, title, content }: DetailSectionProps) {
         <div className="mb-5">
             <div className="flex items-center gap-2 mb-2">
                 {icon}
-                <h4 className="font-semibold text-slate-800 dark:text-slate-200 text-sm">
+                <h4 className="font-semibold text-text-primary text-sm">
                     {title}
                 </h4>
             </div>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pl-6">
+            <p className="text-text-secondary text-sm leading-relaxed pl-6">
                 {content}
             </p>
         </div>
@@ -112,23 +112,23 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                         exit={{ opacity: 0 }}
                         transition={{ delay: 0.15, duration: 0.15 }}
                         onClick={onClose}
-                        className="sticky top-4 left-[calc(100%-3.5rem)] z-10 w-10 h-10 rounded-full bg-slate-200/90 dark:bg-slate-700/90 hover:bg-slate-300 dark:hover:bg-slate-600 flex items-center justify-center transition-colors"
+                        className="sticky top-4 left-[calc(100%-3.5rem)] z-10 w-10 h-10 rounded-full bg-surface border border-border hover:border-primary hover:text-primary flex items-center justify-center transition-colors"
                         aria-label="Cerrar"
                     >
-                        <X className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+                        <X className="w-5 h-5 text-text-secondary" />
                     </motion.button>
 
                     <div className="p-6 md:p-8 pt-2">
                         {/* Header */}
                         <div className="flex items-center gap-2 mb-4">
-                            <Sparkles className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />
-                            <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
+                            <Sparkles className="w-5 h-5 text-primary" />
+                            <span className="text-xs font-medium text-primary uppercase tracking-wider">
                                 {project.role}
                             </span>
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-slate-50 mb-6">
+                        <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">
                             {project.title}
                         </h2>
 
@@ -140,16 +140,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* Highlights */}
                                 <div>
-                                    <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                                    <h3 className="text-lg font-semibold text-text-primary mb-3">
                                         Características Principales
                                     </h3>
                                     <ul className="space-y-2">
                                         {project.highlights.map((highlight) => (
                                             <li
                                                 key={highlight}
-                                                className="flex items-start gap-3 text-slate-600 dark:text-slate-400 text-sm"
+                                                className="flex items-start gap-3 text-text-secondary text-sm"
                                             >
-                                                <span className="w-2 h-2 mt-1.5 rounded-full bg-indigo-500 dark:bg-indigo-400 flex-shrink-0" />
+                                                <span className="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0" />
                                                 {highlight}
                                             </li>
                                         ))}
@@ -158,14 +158,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                                 {/* Tech Stack */}
                                 <div>
-                                    <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                                    <h3 className="text-lg font-semibold text-text-primary mb-3">
                                         Tecnologías
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {project.tech.map((tech) => (
                                             <span
                                                 key={tech}
-                                                className="px-3 py-1.5 text-xs font-medium rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700/50"
+                                                className="px-3 py-1.5 text-xs font-medium rounded-md bg-background text-text-secondary border border-border"
                                             >
                                                 {tech}
                                             </span>
@@ -179,37 +179,37 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                                 {project.details ? (
                                     <>
                                         <DetailSection
-                                            icon={<Target className="w-4 h-4 text-red-500" />}
+                                            icon={<Target className="w-4 h-4 text-primary" />}
                                             title="El Desafío"
                                             content={project.details.challenge}
                                         />
                                         <DetailSection
-                                            icon={<Lightbulb className="w-4 h-4 text-yellow-500" />}
+                                            icon={<Lightbulb className="w-4 h-4 text-primary" />}
                                             title="La Solución"
                                             content={project.details.solution}
                                         />
                                         <DetailSection
-                                            icon={<Wrench className="w-4 h-4 text-blue-500" />}
+                                            icon={<Wrench className="w-4 h-4 text-primary" />}
                                             title="Decisiones Técnicas Clave"
                                             content={project.details.decisions}
                                         />
                                         <DetailSection
-                                            icon={<AlertTriangle className="w-4 h-4 text-orange-500" />}
+                                            icon={<AlertTriangle className="w-4 h-4 text-primary" />}
                                             title="Retos Superados"
                                             content={project.details.obstacles}
                                         />
                                         <DetailSection
-                                            icon={<User className="w-4 h-4 text-indigo-500" />}
+                                            icon={<User className="w-4 h-4 text-primary" />}
                                             title="Mi Rol"
                                             content={project.details.myRole}
                                         />
                                     </>
                                 ) : (
                                     <div>
-                                        <h3 className="text-lg font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                                        <h3 className="text-lg font-semibold text-text-primary mb-3">
                                             Descripción
                                         </h3>
-                                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                        <p className="text-text-secondary leading-relaxed">
                                             {project.desc}
                                         </p>
                                     </div>

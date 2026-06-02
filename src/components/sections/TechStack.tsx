@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code, Briefcase, Users } from "lucide-react";
-import { SkillBadge } from "@/components/ui";
+import { SkillBadge, SectionHeader } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
 
 const categories = [
@@ -20,20 +20,10 @@ export default function TechStack() {
   return (
     <section id="skills" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary text-center">
-            Habilidades
-          </h2>
-          <p className="text-text-secondary mt-4 max-w-2xl mx-auto text-center leading-relaxed">
-            Tecnologías y herramientas que utilizo para crear soluciones de software
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Habilidades"
+          description="Tecnologías y herramientas que utilizo para crear soluciones de software"
+        />
 
         <div ref={ref} className="space-y-12">
           {categories.map(({ icon: Icon, label, key }, catIndex) => (
@@ -41,13 +31,11 @@ export default function TechStack() {
               key={key}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: catIndex * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, delay: catIndex * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 rounded-lg border border-border bg-surface flex items-center justify-center">
-                  <Icon className="w-4 h-4 text-primary" />
-                </div>
-                <h3 className="text-base font-semibold text-text-primary">
+              <div className="flex items-center gap-2.5 mb-5">
+                <Icon className="w-4 h-4 text-primary" />
+                <h3 className="text-sm font-semibold text-text-primary">
                   {label}
                 </h3>
               </div>

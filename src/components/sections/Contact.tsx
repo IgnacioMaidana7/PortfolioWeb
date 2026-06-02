@@ -12,6 +12,7 @@ import {
   Linkedin,
   Loader2,
 } from "lucide-react";
+import { SectionHeader } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
 
 interface ContactInfoItem {
@@ -76,20 +77,11 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
-            Hablemos
-          </h2>
-          <p className="text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">
-            ¿Tienes un proyecto en mente o una oportunidad laboral? Me encantaría escucharte.
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Hablemos"
+          description="¿Tienes un proyecto en mente o una oportunidad laboral? Me encantaría escucharte."
+          align="center"
+        />
 
         <div ref={ref} className="grid lg:grid-cols-2 gap-12">
           {/* Form */}
@@ -164,25 +156,29 @@ export default function Contact() {
                 )}
               </motion.button>
 
-              {submitStatus === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-lg border border-border bg-surface text-text-primary text-center text-sm font-medium"
-                >
-                  Mensaje enviado correctamente.
-                </motion.div>
-              )}
+              <div aria-live="polite" aria-atomic="true">
+                {submitStatus === "success" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 rounded-lg border border-green-500/30 bg-green-500/10 text-green-700 dark:text-green-400 text-center text-sm font-medium"
+                    role="status"
+                  >
+                    Mensaje enviado correctamente.
+                  </motion.div>
+                )}
 
-              {submitStatus === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-lg border border-border bg-surface text-primary text-center text-sm font-medium"
-                >
-                  Hubo un error, intenta de nuevo.
-                </motion.div>
-              )}
+                {submitStatus === "error" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 rounded-lg border border-red-500/30 bg-red-500/10 text-red-700 dark:text-red-400 text-center text-sm font-medium"
+                    role="alert"
+                  >
+                    Hubo un error, intenta de nuevo.
+                  </motion.div>
+                )}
+              </div>
             </form>
           </motion.div>
 
@@ -223,6 +219,7 @@ export default function Contact() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub de Ignacio Maidana"
                   className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center text-text-secondary hover:border-primary hover:text-primary transition-colors duration-200"
                 >
                   <Github className="w-4 h-4" />
@@ -231,6 +228,7 @@ export default function Contact() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn de Ignacio Maidana"
                   className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center text-text-secondary hover:border-primary hover:text-primary transition-colors duration-200"
                 >
                   <Linkedin className="w-4 h-4" />

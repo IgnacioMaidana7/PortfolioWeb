@@ -10,7 +10,7 @@
   --background: #FAFAF9;
   --surface: #FFFFFF;
   --text-primary: #09090B;
-  --text-secondary: #71717A;
+  --text-secondary: #52525B;
   --border: #E4E4E7;
   --primary: #EA580C;
   --primary-hover: #C2410C;
@@ -37,8 +37,7 @@
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
-  --font-sans: var(--font-space-grotesk);
-  --font-heading: var(--font-archivo);
+  --font-sans: var(--font-archivo);
 }
 
 /* ===================================================
@@ -51,7 +50,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-archivo, var(--font-space-grotesk)), system-ui, sans-serif;
+  font-family: var(--font-archivo), system-ui, sans-serif;
 }
 
 /* ===================================================

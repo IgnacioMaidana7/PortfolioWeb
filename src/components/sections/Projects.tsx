@@ -43,7 +43,7 @@ export default function Projects() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -51,7 +51,6 @@ export default function Projects() {
     <section id="projects" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
-          label="Portfolio"
           title="Proyectos"
           description="Proyectos académicos que demuestran habilidades técnicas y de liderazgo"
         />
@@ -63,11 +62,12 @@ export default function Projects() {
           animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-2 gap-5"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.div key={project.id} variants={cardVariants}>
               <ProjectCard
                 project={project}
                 onClick={() => setSelectedProject(project)}
+                isFirst={index === 0}
               />
             </motion.div>
           ))}

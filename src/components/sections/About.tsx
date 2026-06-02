@@ -2,13 +2,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Target, Code2 } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 const aboutStats = [
   { value: "4", label: "Proyectos" },
   { value: "15+", label: "Tecnologías" },
-  { value: "2", label: "Roles: Dev + PM" },
+  { value: "2", label: "Roles" },
 ];
 
 export default function About() {
@@ -18,12 +18,12 @@ export default function About() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.18 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 28 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
   };
 
   return (
@@ -34,15 +34,18 @@ export default function About() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid lg:grid-cols-2 gap-16 items-center"
+          className="grid lg:grid-cols-2 gap-16 items-start"
         >
           {/* Left — Main content */}
           <motion.div variants={itemVariants} className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
-              Sobre mí
-            </h2>
+            <div>
+              <div className="h-0.5 w-10 bg-primary mb-5" />
+              <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+                Sobre mí
+              </h2>
+            </div>
 
-            <p className="text-text-secondary text-lg leading-relaxed">
+            <p className="text-text-secondary text-base leading-relaxed">
               {personalInfo.summary}
             </p>
 
@@ -51,67 +54,52 @@ export default function About() {
               <span>{personalInfo.location}</span>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 pt-2">
-              {aboutStats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="p-4 rounded-lg border border-border bg-background text-center"
-                >
-                  <div className="text-2xl font-bold text-primary">
-                    {stat.value}
+            {/* Inline stats without boxes */}
+            <div className="flex items-center gap-6 pt-2">
+              {aboutStats.map((stat, i) => (
+                <div key={stat.label} className="flex items-center gap-6">
+                  <div>
+                    <div className="text-3xl font-black text-primary leading-none">{stat.value}</div>
+                    <div className="text-xs text-text-secondary mt-1">{stat.label}</div>
                   </div>
-                  <div className="text-xs text-text-secondary mt-1 leading-tight">
-                    {stat.label}
-                  </div>
+                  {i < aboutStats.length - 1 && (
+                    <div className="w-px h-8 bg-border" />
+                  )}
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right — Feature cards */}
-          <motion.div variants={itemVariants} className="grid sm:grid-cols-2 gap-4">
-            <motion.div
-              className="group p-6 rounded-xl bg-background border border-border hover:border-primary/50 transition-colors duration-300"
-              whileHover={{ y: -4 }}
-            >
-              <div className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center mb-4 group-hover:border-primary/40 transition-colors">
-                <Target className="w-5 h-5 text-primary" />
+          {/* Right — Feature blocks (no icon boxes) */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div>
+                <h3 className="font-bold text-text-primary mb-1.5">
+                  Orientado a Objetivos
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  Experiencia liderando equipos con metodologías ágiles SCRUM y Kanban.
+                </p>
               </div>
-              <h3 className="text-text-primary font-semibold mb-2">
-                Orientado a Objetivos
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                Experiencia liderando equipos con metodologías ágiles SCRUM y Kanban.
-              </p>
-            </motion.div>
 
-            <motion.div
-              className="group p-6 rounded-xl bg-background border border-border hover:border-primary/50 transition-colors duration-300"
-              whileHover={{ y: -4 }}
-            >
-              <div className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center mb-4 group-hover:border-primary/40 transition-colors">
-                <Code2 className="w-5 h-5 text-primary" />
+              <div>
+                <h3 className="font-bold text-text-primary mb-1.5">
+                  Full Stack Developer
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  Desarrollo end-to-end desde el frontend hasta la base de datos.
+                </p>
               </div>
-              <h3 className="text-text-primary font-semibold mb-2">
-                Full Stack Developer
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed">
-                Desarrollo end-to-end desde el frontend hasta la base de datos.
-              </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="sm:col-span-2 p-6 rounded-xl border border-border bg-background text-center"
-              whileHover={{ scale: 1.01 }}
-            >
+            <div className="pt-5 border-t border-border">
               <p className="text-text-secondary text-sm leading-relaxed">
-                <span className="text-primary font-semibold">
+                <span className="text-text-primary font-semibold">
                   Desarrollador Frontend en Cloudnet Solutions
                 </span>{" "}
-                con experiencia en desarrollo Full Stack y gestión de proyectos.
+                con experiencia en desarrollo Full Stack y gestión de proyectos tecnológicos.
               </p>
-            </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </div>

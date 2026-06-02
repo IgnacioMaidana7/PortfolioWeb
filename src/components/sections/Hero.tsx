@@ -7,7 +7,6 @@ import { portfolioData } from "@/data/portfolio";
 
 export default function Hero() {
   const { personalInfo } = portfolioData;
-  const [firstName, lastName] = personalInfo.name.split(" ");
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -26,31 +25,59 @@ export default function Hero() {
 
           {/* Left: Text */}
           <div>
-            <motion.h1
-              className="text-6xl md:text-7xl lg:text-[88px] font-bold text-text-primary tracking-tight leading-[0.9] mb-6"
+            {/* Mobile profile picture */}
+            <motion.div
+              className="flex lg:hidden mb-8"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ProfilePicture
+                src="/images/Foto_Perfil.jpg"
+                alt="Ignacio Maidana"
+                size="md"
+              />
+            </motion.div>
+
+            {/* Name: weight-contrast display treatment */}
+            <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-6"
             >
-              {firstName}
-              <br />
-              {lastName}
-            </motion.h1>
+              <h1>
+                <span className="block text-2xl font-medium text-text-secondary tracking-wide leading-snug">
+                  Ignacio
+                </span>
+                <span className="block text-7xl md:text-8xl lg:text-[88px] font-black text-text-primary leading-none tracking-[-0.02em]">
+                  Maidana
+                </span>
+              </h1>
+
+              {/* Earned surprise: animated orange rule draws in on load */}
+              <motion.div
+                className="h-0.5 bg-primary mt-4 origin-left"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.9, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </motion.div>
 
             <motion.p
-              className="text-lg font-medium text-primary mb-4"
+              className="text-base font-medium text-primary mb-4 tracking-wide"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.22 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               {personalInfo.title}
             </motion.p>
 
             <motion.p
-              className="text-text-secondary text-base leading-relaxed max-w-105 mb-10"
+              className="text-text-secondary text-base leading-relaxed max-w-md mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.32 }}
+              transition={{ duration: 0.6, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
             >
               Desarrollador Frontend en Cloudnet Solutions. Ingeniería en
               Sistemas con experiencia en desarrollo Full Stack y gestión ágil
@@ -61,7 +88,7 @@ export default function Hero() {
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.42 }}
+              transition={{ duration: 0.6, delay: 0.46, ease: [0.16, 1, 0.3, 1] }}
             >
               <motion.button
                 onClick={() => scrollToSection("contact")}
@@ -85,7 +112,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: Profile picture */}
+          {/* Right: Profile picture (desktop) */}
           <div className="hidden lg:flex justify-center">
             <ProfilePicture
               src="/images/Foto_Perfil.jpg"
