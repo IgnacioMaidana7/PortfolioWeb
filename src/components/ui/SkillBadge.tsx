@@ -51,8 +51,8 @@ const getSkillIcon = (skill: string) => {
 export default function SkillBadge({ skill, index = 0 }: SkillBadgeProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 16, scale: 0.88 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
       className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-border bg-surface text-text-secondary hover:border-primary hover:text-primary transition-colors duration-200 cursor-default text-sm font-medium"

@@ -3,6 +3,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MapPin } from "lucide-react";
+
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 import { portfolioData } from "@/data/portfolio";
 
 const aboutStats = [
@@ -39,7 +41,12 @@ export default function About() {
           {/* Left — Main content */}
           <motion.div variants={itemVariants} className="space-y-6">
             <div>
-              <div className="h-0.5 w-10 bg-primary mb-5" />
+              <motion.div
+                className="h-0.5 w-10 bg-primary mb-5 origin-left"
+                initial={{ scaleX: 0 }}
+                animate={isInView ? { scaleX: 1 } : {}}
+                transition={{ duration: 0.6, ease }}
+              />
               <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
                 Sobre mí
               </h2>
@@ -58,10 +65,14 @@ export default function About() {
             <div className="flex items-center gap-6 pt-2">
               {aboutStats.map((stat, i) => (
                 <div key={stat.label} className="flex items-center gap-6">
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease }}
+                  >
                     <div className="text-3xl font-black text-primary leading-none">{stat.value}</div>
                     <div className="text-xs text-text-secondary mt-1">{stat.label}</div>
-                  </div>
+                  </motion.div>
                   {i < aboutStats.length - 1 && (
                     <div className="w-px h-8 bg-border" />
                   )}

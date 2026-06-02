@@ -40,8 +40,8 @@ export default function ProjectCard({ project, onClick, isFirst = false }: Proje
       layoutId={`project-${project.id}`}
       transition={layoutTransition}
       onClick={onClick}
-      className={`group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-primary/50 shadow-sm transition-colors duration-300 cursor-pointer ${isFirst ? "md:col-span-2 lg:col-span-2" : ""}`}
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      className={`group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-primary/40 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer ${isFirst ? "md:col-span-2 lg:col-span-2" : ""}`}
+      whileHover={{ y: -6, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
       whileTap={{ scale: 0.98 }}
       style={{ willChange: "transform" }}
     >

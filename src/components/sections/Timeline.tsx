@@ -83,8 +83,13 @@ export default function Timeline() {
           animate={isInView ? "visible" : "hidden"}
           className="relative"
         >
-          {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-border" />
+          {/* Vertical line — draws down on entry */}
+          <motion.div
+            className="absolute left-8 top-0 bottom-0 w-px bg-border origin-top"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number], delay: 0.1 }}
+          />
 
           <div className="space-y-6">
             {timelineItems.map((item, index) => {
@@ -96,8 +101,13 @@ export default function Timeline() {
                   variants={itemVariants}
                   className="relative pl-20"
                 >
-                  {/* Dot */}
-                  <div className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background -translate-x-1/2" />
+                  {/* Dot — scale-pops in after the line reaches it */}
+                  <motion.div
+                    className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background -translate-x-1/2"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ duration: 0.35, delay: 0.2 + index * 0.12, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                  />
 
                   {/* Card */}
                   <motion.div

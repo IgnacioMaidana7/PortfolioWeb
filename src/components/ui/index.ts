@@ -1,4 +1,5 @@
 export { default as SkillBadge } from "./SkillBadge";
+export { default as ScrollProgress } from "./ScrollProgress";
 export { default as SectionHeader } from "./SectionHeader";
 export { default as ThemeToggle } from "./ThemeToggle";
 export { default as AnimatedArrow } from "./AnimatedArrow";

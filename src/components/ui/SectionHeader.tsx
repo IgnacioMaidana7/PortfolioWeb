@@ -11,6 +11,8 @@ interface SectionHeaderProps {
   children?: ReactNode;
 }
 
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
 export default function SectionHeader({
   title,
   titleHighlight,
@@ -20,33 +22,45 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const isCenter = align === "center";
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`mb-16 ${isCenter ? "text-center" : ""}`}
     >
-      <div className={`h-0.5 w-10 bg-primary mb-5 ${isCenter ? "mx-auto" : ""}`} />
+      {/* Orange accent rule — scaleX draw on entry */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.6, ease }}
+        className={`h-0.5 w-10 bg-primary mb-5 ${isCenter ? "mx-auto origin-center" : "origin-left"}`}
+      />
 
-      <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+      <motion.h2
+        className="text-4xl md:text-5xl font-bold text-text-primary"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.1, ease }}
+      >
         {title}
         {titleHighlight && (
           <span className="text-primary">{titleHighlight}</span>
         )}
-      </h2>
+      </motion.h2>
 
       {description && (
-        <p className={`text-text-secondary mt-4 leading-relaxed ${isCenter ? "max-w-2xl mx-auto" : "max-w-lg"}`}>
+        <motion.p
+          className={`text-text-secondary mt-4 leading-relaxed ${isCenter ? "max-w-2xl mx-auto" : "max-w-lg"}`}
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.18, ease }}
+        >
           {description}
-        </p>
+        </motion.p>
       )}
 
       {children}
-    </motion.div>
+    </div>
   );
 }

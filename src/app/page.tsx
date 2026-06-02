@@ -7,10 +7,12 @@ import {
   Timeline,
   Contact,
 } from "@/components/sections";
+import { ScrollProgress } from "@/components/ui";
 
 export default function Home() {
   return (
     <main className="bg-background min-h-screen transition-colors">
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <About />
