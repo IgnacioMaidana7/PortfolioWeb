@@ -21,6 +21,7 @@ export const portfolioData = {
   skills: {
     technical: [
       "JavaScript",
+      "TypeScript",
       "Python",
       "React.js",
       "Node.js",
@@ -32,6 +33,11 @@ export const portfolioData = {
       "Postman",
       "Jest",
       "Supertest",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Data Analysis",
+      "Data Visualization",
       "IoT (ESP32)",
       "Linux",
       "Docker",
