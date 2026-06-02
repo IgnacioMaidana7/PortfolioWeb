@@ -27,21 +27,13 @@ export default function ProfilePicture({
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
         >
-            {/* Animated gradient border ring */}
+            {/* Animated gradient border ring — emerald → sky */}
             <motion.div
-                className={`${sizeClasses[size]} rounded-full p-1 bg-gradient-to-br from-indigo-500 via-violet-500 to-indigo-500 dark:from-indigo-400 dark:via-violet-400 dark:to-indigo-400`}
-                animate={{
-                    rotate: [0, 360],
-                }}
-                transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                }}
+                className={`${sizeClasses[size]} rounded-full p-1 bg-linear-to-br from-emerald-500 via-sky-500 to-emerald-500 dark:from-emerald-400 dark:via-sky-400 dark:to-emerald-400`}
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             >
-                {/* Inner white/dark ring for spacing */}
                 <div className="w-full h-full rounded-full p-1 bg-background">
-                    {/* Image container with hover effect */}
                     <motion.div
                         className="relative w-full h-full rounded-full overflow-hidden shadow-lg"
                         whileHover={{ scale: 1.05 }}
@@ -55,34 +47,15 @@ export default function ProfilePicture({
                             priority
                             sizes="(max-width: 768px) 128px, 160px"
                         />
-
-                        {/* Subtle overlay on hover */}
-                        <motion.div
-                            className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 to-violet-500/0"
-                            whileHover={{
-                                background: [
-                                    "linear-gradient(to bottom right, rgba(99, 102, 241, 0), rgba(139, 92, 246, 0))",
-                                    "linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1))",
-                                ],
-                            }}
-                            transition={{ duration: 0.3 }}
-                        />
                     </motion.div>
                 </div>
             </motion.div>
 
-            {/* Pulsing glow effect */}
+            {/* Pulsing emerald glow */}
             <motion.div
-                className={`absolute inset-0 ${sizeClasses[size]} rounded-full bg-gradient-to-br from-indigo-500/20 to-violet-500/20 dark:from-indigo-400/20 dark:to-violet-400/20 blur-xl -z-10`}
-                animate={{
-                    scale: [1, 1.1, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                }}
-                transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
+                className={`absolute inset-0 ${sizeClasses[size]} rounded-full bg-linear-to-br from-emerald-500/20 to-sky-500/20 dark:from-emerald-400/20 dark:to-sky-400/20 blur-xl -z-10`}
+                animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
         </motion.div>
     );

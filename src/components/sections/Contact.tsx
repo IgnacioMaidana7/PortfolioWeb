@@ -10,7 +10,6 @@ import {
   Send,
   Github,
   Linkedin,
-  ArrowUpRight,
   Loader2,
 } from "lucide-react";
 import { SectionHeader } from "@/components/ui";
@@ -28,39 +27,25 @@ export default function Contact() {
   const ref = useRef(null);
   const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    // Map EmailJS field names to formData keys
     const fieldMap: { [key: string]: string } = {
       user_name: "name",
       user_email: "email",
       message: "message",
     };
-    const fieldName = fieldMap[name] || name;
-    setFormData({
-      ...formData,
-      [fieldName]: value,
-    });
+    setFormData({ ...formData, [fieldMap[name] || name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!formRef.current) return;
-
     setIsLoading(true);
     setSubmitStatus("idle");
-
     try {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
@@ -68,54 +53,29 @@ export default function Contact() {
         formRef.current,
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
-
-      // Success state
       setSubmitStatus("success");
       setFormData({ name: "", email: "", message: "" });
-
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 5000);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } catch (error) {
       console.error("EmailJS Error:", error);
       setSubmitStatus("error");
-
-      // Clear error message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 5000);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } finally {
       setIsLoading(false);
     }
   };
 
   const contactInfo: ContactInfoItem[] = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: personalInfo.email,
-      href: `mailto:${personalInfo.email}`,
-    },
-    {
-      icon: Phone,
-      label: "Teléfono",
-      value: `+54 ${personalInfo.phone}`,
-      href: `tel:+54${personalInfo.phone}`,
-    },
-    {
-      icon: MapPin,
-      label: "Ubicación",
-      value: personalInfo.location,
-      href: null,
-    },
+    { icon: Mail, label: "Email", value: personalInfo.email, href: `mailto:${personalInfo.email}` },
+    { icon: Phone, label: "Teléfono", value: `+54 ${personalInfo.phone}`, href: `tel:+54${personalInfo.phone}` },
+    { icon: MapPin, label: "Ubicación", value: personalInfo.location, href: null },
   ];
 
+  const inputClass =
+    "w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm";
+
   return (
-    <section
-      id="contact"
-      className="py-24 bg-background"
-    >
+    <section id="contact" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           label="Contacto"
@@ -132,10 +92,7 @@ export default function Contact() {
           >
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >
+                <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Nombre
                 </label>
                 <input
@@ -144,7 +101,7 @@ export default function Contact() {
                   name="user_name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder-text-secondary focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all shadow-sm"
+                  className={inputClass}
                   placeholder="Tu nombre"
                   required
                   disabled={isLoading}
@@ -152,10 +109,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >
+                <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Email
                 </label>
                 <input
@@ -164,7 +118,7 @@ export default function Contact() {
                   name="user_email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700/50 text-slate-900 dark:text-slate-50 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all shadow-sm"
+                  className={inputClass}
                   placeholder="tu@email.com"
                   required
                   disabled={isLoading}
@@ -172,10 +126,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >
+                <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Mensaje
                 </label>
                 <textarea
@@ -184,7 +135,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-800/50 border border-slate-300 dark:border-slate-700/50 text-slate-900 dark:text-slate-50 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none shadow-sm"
+                  className={`${inputClass} resize-none`}
                   placeholder="Cuéntame sobre tu proyecto u oportunidad..."
                   required
                   disabled={isLoading}
@@ -194,35 +145,27 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 disabled={isLoading}
-                className="group w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white font-medium rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="group w-full flex items-center justify-center gap-2 px-8 py-4 bg-linear-to-r from-emerald-600 to-sky-600 dark:from-emerald-500 dark:to-sky-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 whileHover={!isLoading ? { scale: 1.02 } : {}}
                 whileTap={!isLoading ? { scale: 0.98 } : {}}
               >
                 {isLoading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    Enviando...
-                  </>
+                  <><Loader2 className="w-5 h-5 animate-spin" />Enviando...</>
                 ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Enviar Propuesta
-                  </>
+                  <><Send className="w-5 h-5" />Enviar Propuesta</>
                 )}
               </motion.button>
 
-              {/* Success Message */}
               {submitStatus === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800/30 text-green-700 dark:text-green-400 text-center font-medium"
+                  className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 text-emerald-700 dark:text-emerald-400 text-center font-medium"
                 >
                   ¡Mensaje enviado con éxito!
                 </motion.div>
               )}
 
-              {/* Error Message */}
               {submitStatus === "error" && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -242,30 +185,21 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="space-y-6"
           >
-            {/* Info cards */}
             <div className="space-y-4">
               {contactInfo.map((item) => {
                 const Icon = item.icon;
-
                 return (
                   <motion.div
                     key={item.label}
                     className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-border shadow-sm"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm">
-                        {item.label}
-                      </p>
-                      <p className="text-slate-900 dark:text-slate-50 font-medium">
-                        {item.value}
-                      </p>
+                      <p className="text-slate-500 dark:text-slate-400 text-sm">{item.label}</p>
+                      <p className="text-slate-900 dark:text-slate-50 font-medium">{item.value}</p>
                     </div>
                   </motion.div>
                 );
@@ -273,16 +207,14 @@ export default function Contact() {
             </div>
 
             {/* Social links */}
-            <div className="pt-6 border-t border-slate-200 dark:border-slate-700/50">
-              <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">
-                Encuéntrame en
-              </p>
+            <div className="pt-6 border-t border-slate-200 dark:border-border">
+              <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">Encuéntrame en</p>
               <div className="flex gap-4">
                 <motion.a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 hover:border-indigo-500/30 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-border flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 hover:border-emerald-500/40 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 transition-all duration-300"
                   whileHover={{ y: -2 }}
                 >
                   <Github className="w-5 h-5" />
@@ -291,7 +223,7 @@ export default function Contact() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 hover:border-indigo-500/30 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-all duration-300"
+                  className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-border flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 hover:border-sky-500/40 hover:bg-sky-50 dark:hover:bg-sky-500/10 transition-all duration-300"
                   whileHover={{ y: -2 }}
                 >
                   <Linkedin className="w-5 h-5" />
@@ -301,7 +233,7 @@ export default function Contact() {
 
             {/* CTA Card */}
             <motion.div
-              className="p-6 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-600/10 dark:to-violet-600/10 border border-indigo-300 dark:border-indigo-500/20 shadow-sm"
+              className="p-6 rounded-2xl bg-linear-to-br from-emerald-50 to-sky-50 dark:from-emerald-600/8 dark:to-sky-600/8 border border-emerald-300 dark:border-emerald-500/20 shadow-sm"
               whileHover={{ scale: 1.02 }}
             >
               <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-2">
@@ -313,7 +245,7 @@ export default function Contact() {
               </p>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+                className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 {personalInfo.email}

@@ -6,44 +6,32 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================
-   DESIGN SYSTEM - CSS Variables
-   "Soft Light" vs "Deep Dark" Theme
+   DESIGN SYSTEM - Terminal Pro Palette
+   Deep navy-black + emerald green + sky blue
    ============================================ */
 
-/* Light Mode (Soft Light) - Evita blanco puro */
+/* Light Mode — Cool Pearl */
 :root {
-  --background: #f1f5f9;
-  /* Slate-100 - Fondo principal más profundo */
-  --surface: #f8fafc;
-  /* Slate-50 - Tarjetas y superficies suaves */
-  --text-primary: #1e293b;
-  /* Slate-800 - Texto suave */
-  --text-secondary: #64748b;
-  /* Slate-500 - Secundario equilibrado */
-  --border: #cbd5e1;
-  /* Slate-300 - Definición sutil */
-  --primary: #4f46e5;
-  /* Indigo-600 - Color principal */
-  --primary-hover: #4338ca;
-  /* Indigo-700 - Hover del primario */
+  --background: #EDF2F7;
+  --surface: #FFFFFF;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --border: #CBD5E1;
+  --primary: #059669;
+  --primary-hover: #047857;
+  --accent: #0284C7;
 }
 
-/* Dark Mode (Deep Dark) */
+/* Dark Mode — Deep Navy */
 .dark {
-  --background: #0f172a;
-  /* Slate-900 - Fondo principal profundo */
-  --surface: #1e293b;
-  /* Slate-800 - Tarjetas y modales */
-  --text-primary: #f8fafc;
-  /* Slate-50 - Texto principal */
-  --text-secondary: #94a3b8;
-  /* Slate-400 - Texto secundario */
-  --border: #334155;
-  /* Slate-700 - Bordes */
-  --primary: #6366f1;
-  /* Indigo-500 - Color principal */
-  --primary-hover: #818cf8;
-  /* Indigo-400 - Hover del primario */
+  --background: #070C18;
+  --surface: #0D1526;
+  --text-primary: #E2E8F0;
+  --text-secondary: #64748B;
+  --border: #1A2744;
+  --primary: #10B981;
+  --primary-hover: #34D399;
+  --accent: #38BDF8;
 }
 
 /* ============================================
@@ -57,7 +45,9 @@
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
-  --font-sans: var(--font-inter);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-space-grotesk);
+  --font-heading: var(--font-archivo);
 }
 
 /* ============================================
@@ -67,6 +57,35 @@ body {
   background-color: var(--background);
   color: var(--text-primary);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-archivo, var(--font-space-grotesk)), system-ui, sans-serif;
+}
+
+/* ============================================
+   HERO GRID PATTERN
+   Subtle tech grid for Hero background
+   ============================================ */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .hero-grid {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* ============================================
@@ -80,22 +99,18 @@ html.dark {
   color-scheme: dark;
 }
 
-/* Transición optimizada solo en body para evitar pérdida de FPS */
 body {
   will-change: background-color, color;
   transition: background-color 200ms ease-out, color 200ms ease-out;
 }
 
-/* Clase utilitaria para elementos que necesitan transición de tema */
 .theme-transition {
   transition: background-color 200ms ease-out,
     border-color 200ms ease-out,
     color 200ms ease-out;
 }
 
-/* Respeta preferencias de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after,
@@ -108,15 +123,13 @@ body {
 /* ============================================
    UTILITY STYLES
    ============================================ */
-
-/* Cursor pointer para elementos interactivos */
 button,
 a,
 [role="button"] {
   cursor: pointer;
 }
 
-/* Custom scrollbar - Light mode */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -134,14 +147,14 @@ a,
   background: var(--primary);
 }
 
-/* Selection color */
+/* Selection color — emerald tint */
 ::selection {
-  background: rgba(99, 102, 241, 0.3);
+  background: rgba(16, 185, 129, 0.25);
   color: var(--text-primary);
 }
 
 /* ============================================
-   MODAL BLUR EFFECT - Blur header when modal is open
+   MODAL BLUR EFFECT
    ============================================ */
 body[data-modal-open="true"] nav {
   filter: blur(4px);

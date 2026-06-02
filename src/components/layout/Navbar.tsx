@@ -20,9 +20,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -39,20 +37,21 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
             ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-sm"
             : "bg-transparent"
-          }`}
+        }`}
       >
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <motion.button
               onClick={() => scrollToSection("#hero")}
-              className="text-xl font-bold text-slate-900 dark:text-slate-50 cursor-pointer"
+              className="text-xl font-bold cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500 dark:from-indigo-400 dark:to-violet-400">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-500 to-sky-500 dark:from-emerald-400 dark:to-sky-400">
                 {portfolioData.personalInfo.name}
               </span>
             </motion.button>
@@ -63,10 +62,11 @@ export default function Navbar() {
                 <motion.button
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 text-sm font-medium transition-colors cursor-pointer"
-                  whileHover={{ y: -2 }}
+                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 text-sm font-medium transition-colors cursor-pointer relative group"
+                  whileHover={{ y: -1 }}
                 >
                   {item.label}
+                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
                 </motion.button>
               ))}
               <ThemeToggle />
@@ -80,11 +80,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 whileTap={{ scale: 0.95 }}
               >
-                {isMobileMenuOpen ? (
-                  <X className="w-5 h-5" />
-                ) : (
-                  <Menu className="w-5 h-5" />
-                )}
+                {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </motion.button>
             </div>
           </div>
@@ -107,7 +103,7 @@ export default function Navbar() {
                   <motion.button
                     key={item.label}
                     onClick={() => scrollToSection(item.href)}
-                    className="text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-50 text-lg font-medium py-2 text-left cursor-pointer"
+                    className="text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 text-lg font-medium py-2 text-left cursor-pointer transition-colors"
                     whileHover={{ x: 5 }}
                   >
                     {item.label}

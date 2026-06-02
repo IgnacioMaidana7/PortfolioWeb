@@ -19,7 +19,7 @@ import {
 
 interface SkillBadgeProps {
   skill: string;
-  color: "indigo" | "violet" | "emerald";
+  color: "emerald" | "sky" | "teal";
   index?: number;
 }
 
@@ -47,12 +47,12 @@ const getSkillIcon = (skill: string) => {
 };
 
 const colorClasses = {
-  indigo:
-    "bg-indigo-100 border-indigo-300 text-indigo-700 dark:bg-indigo-500/10 dark:border-indigo-500/30 dark:text-indigo-300",
-  violet:
-    "bg-violet-100 border-violet-300 text-violet-700 dark:bg-violet-500/10 dark:border-violet-500/30 dark:text-violet-300",
   emerald:
-    "bg-emerald-100 border-emerald-300 text-emerald-700 dark:bg-emerald-500/10 dark:border-emerald-500/30 dark:text-emerald-300",
+    "bg-emerald-100 border-emerald-300 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-500/10 dark:border-emerald-500/30 dark:text-emerald-300 dark:hover:bg-emerald-500/20",
+  sky:
+    "bg-sky-100 border-sky-300 text-sky-700 hover:bg-sky-200 dark:bg-sky-500/10 dark:border-sky-500/30 dark:text-sky-300 dark:hover:bg-sky-500/20",
+  teal:
+    "bg-teal-100 border-teal-300 text-teal-700 hover:bg-teal-200 dark:bg-teal-500/10 dark:border-teal-500/30 dark:text-teal-300 dark:hover:bg-teal-500/20",
 };
 
 export default function SkillBadge({ skill, color, index = 0 }: SkillBadgeProps) {
@@ -62,7 +62,7 @@ export default function SkillBadge({ skill, color, index = 0 }: SkillBadgeProps)
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${colorClasses[color]} transition-all duration-300 cursor-default`}
+      className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${colorClasses[color]} transition-all duration-200 cursor-default`}
     >
       {getSkillIcon(skill)}
       <span className="text-sm font-medium">{skill}</span>

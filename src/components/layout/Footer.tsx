@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Footer() {
@@ -9,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 bg-slate-100/80 dark:bg-slate-950 border-t border-slate-300 dark:border-slate-800/50">
+    <footer className="py-8 bg-surface border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0 }}
@@ -19,16 +18,16 @@ export default function Footer() {
           className="flex flex-col md:flex-row items-center justify-between gap-4"
         >
           <div className="text-center md:text-left">
-            <p className="text-slate-900 dark:text-slate-50 font-semibold">
+            <p className="font-semibold text-transparent bg-clip-text bg-linear-to-r from-emerald-500 to-sky-500 dark:from-emerald-400 dark:to-sky-400">
               {personalInfo.name}
             </p>
-            <p className="text-slate-600 dark:text-slate-400 text-sm">
+            <p className="text-slate-500 dark:text-slate-500 text-sm mt-0.5">
               {personalInfo.title}
             </p>
           </div>
 
-          <p className="text-slate-500 dark:text-slate-500 text-sm">
-            © {currentYear} Todos los derechos reservados.
+          <p className="text-slate-400 dark:text-slate-600 text-sm font-mono">
+            © {currentYear} · Todos los derechos reservados
           </p>
         </motion.div>
       </div>

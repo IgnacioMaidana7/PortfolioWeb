@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code, Users } from "lucide-react";
+import { Code, Users, Heart } from "lucide-react";
 import { SkillBadge, SectionHeader } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
 
@@ -12,10 +12,7 @@ export default function TechStack() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      id="skills"
-      className="py-24 bg-background"
-    >
+    <section id="skills" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           label="Habilidades"
@@ -31,8 +28,8 @@ export default function TechStack() {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-500/10 flex items-center justify-center">
-                <Code className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center">
+                <Code className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">
                 Desarrollo
@@ -40,7 +37,7 @@ export default function TechStack() {
             </div>
             <div className="flex flex-wrap gap-3">
               {skills.technical.map((skill, index) => (
-                <SkillBadge key={skill} skill={skill} color="indigo" index={index} />
+                <SkillBadge key={skill} skill={skill} color="emerald" index={index} />
               ))}
             </div>
           </motion.div>
@@ -52,8 +49,8 @@ export default function TechStack() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-violet-100 dark:bg-violet-500/10 flex items-center justify-center">
-                <Users className="w-5 h-5 text-violet-600 dark:text-violet-400" />
+              <div className="w-10 h-10 rounded-lg bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center">
+                <Users className="w-5 h-5 text-sky-600 dark:text-sky-400" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">
                 Gestión & Herramientas
@@ -61,7 +58,7 @@ export default function TechStack() {
             </div>
             <div className="flex flex-wrap gap-3">
               {skills.tools.map((tool, index) => (
-                <SkillBadge key={tool} skill={tool} color="violet" index={index} />
+                <SkillBadge key={tool} skill={tool} color="sky" index={index} />
               ))}
             </div>
           </motion.div>
@@ -73,8 +70,8 @@ export default function TechStack() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center">
-                <Users className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-500/10 flex items-center justify-center">
+                <Heart className="w-5 h-5 text-teal-600 dark:text-teal-400" />
               </div>
               <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">
                 Habilidades Blandas
@@ -82,7 +79,7 @@ export default function TechStack() {
             </div>
             <div className="flex flex-wrap gap-3">
               {skills.soft.map((skill, index) => (
-                <SkillBadge key={skill} skill={skill} color="emerald" index={index} />
+                <SkillBadge key={skill} skill={skill} color="teal" index={index} />
               ))}
             </div>
           </motion.div>
