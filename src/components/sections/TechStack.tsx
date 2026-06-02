@@ -2,9 +2,15 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Code, Users, Heart } from "lucide-react";
-import { SkillBadge, SectionHeader } from "@/components/ui";
+import { Code, Briefcase, Users } from "lucide-react";
+import { SkillBadge } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
+
+const categories = [
+  { icon: Code, label: "Desarrollo", key: "technical" as const },
+  { icon: Briefcase, label: "Gestión & Herramientas", key: "tools" as const },
+  { icon: Users, label: "Habilidades Blandas", key: "soft" as const },
+];
 
 export default function TechStack() {
   const { skills } = portfolioData;
@@ -14,75 +20,44 @@ export default function TechStack() {
   return (
     <section id="skills" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          label="Habilidades"
-          title="Tech Stack"
-          description="Tecnologías y herramientas que utilizo para crear soluciones de software"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary text-center">
+            Habilidades
+          </h2>
+          <p className="text-text-secondary mt-4 max-w-2xl mx-auto text-center leading-relaxed">
+            Tecnologías y herramientas que utilizo para crear soluciones de software
+          </p>
+        </motion.div>
 
         <div ref={ref} className="space-y-12">
-          {/* Development */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center">
-                <Code className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          {categories.map(({ icon: Icon, label, key }, catIndex) => (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: catIndex * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-9 h-9 rounded-lg border border-border bg-surface flex items-center justify-center">
+                  <Icon className="w-4 h-4 text-primary" />
+                </div>
+                <h3 className="text-base font-semibold text-text-primary">
+                  {label}
+                </h3>
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">
-                Desarrollo
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {skills.technical.map((skill, index) => (
-                <SkillBadge key={skill} skill={skill} color="emerald" index={index} />
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Tools & Management */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-sky-100 dark:bg-sky-500/10 flex items-center justify-center">
-                <Users className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+              <div className="flex flex-wrap gap-2.5">
+                {skills[key].map((skill, index) => (
+                  <SkillBadge key={skill} skill={skill} index={index} />
+                ))}
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">
-                Gestión & Herramientas
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {skills.tools.map((tool, index) => (
-                <SkillBadge key={tool} skill={tool} color="sky" index={index} />
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Soft Skills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-500/10 flex items-center justify-center">
-                <Heart className="w-5 h-5 text-teal-600 dark:text-teal-400" />
-              </div>
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-50">
-                Habilidades Blandas
-              </h3>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {skills.soft.map((skill, index) => (
-                <SkillBadge key={skill} skill={skill} color="teal" index={index} />
-              ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

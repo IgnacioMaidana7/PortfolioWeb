@@ -3,10 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, Briefcase, Calendar } from "lucide-react";
-import { SectionHeader } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
-
-type TimelineColor = "emerald" | "sky" | "teal";
 
 interface TimelineItem {
   type: "education" | "project";
@@ -14,29 +11,7 @@ interface TimelineItem {
   subtitle: string;
   period: string;
   icon: typeof GraduationCap | typeof Briefcase;
-  color: TimelineColor;
 }
-
-const COLOR_CLASSES: Record<TimelineColor, { bg: string; border: string; icon: string; dot: string }> = {
-  emerald: {
-    bg: "bg-emerald-50 dark:bg-emerald-500/5",
-    border: "border-emerald-300 dark:border-emerald-500/25",
-    icon: "text-emerald-600 dark:text-emerald-400",
-    dot: "bg-emerald-500",
-  },
-  sky: {
-    bg: "bg-sky-50 dark:bg-sky-500/5",
-    border: "border-sky-300 dark:border-sky-500/25",
-    icon: "text-sky-600 dark:text-sky-400",
-    dot: "bg-sky-500",
-  },
-  teal: {
-    bg: "bg-teal-50 dark:bg-teal-500/5",
-    border: "border-teal-300 dark:border-teal-500/25",
-    icon: "text-teal-600 dark:text-teal-400",
-    dot: "bg-teal-500",
-  },
-};
 
 export default function Timeline() {
   const { education, projects } = portfolioData;
@@ -45,12 +20,18 @@ export default function Timeline() {
 
   const timelineItems: TimelineItem[] = [
     {
+      type: "project",
+      title: "Desarrollador Frontend",
+      subtitle: "Cloudnet Solutions",
+      period: "Feb 2026 - Actualidad",
+      icon: Briefcase,
+    },
+    {
       type: "education",
       title: education[0].degree,
       subtitle: education[0].institution,
       period: education[0].period,
       icon: GraduationCap,
-      color: "emerald",
     },
     {
       type: "project",
@@ -58,7 +39,6 @@ export default function Timeline() {
       subtitle: projects[0].title,
       period: "2025",
       icon: Briefcase,
-      color: "sky",
     },
     {
       type: "project",
@@ -66,7 +46,6 @@ export default function Timeline() {
       subtitle: projects[1].title,
       period: "2024",
       icon: Briefcase,
-      color: "sky",
     },
     {
       type: "project",
@@ -74,28 +53,36 @@ export default function Timeline() {
       subtitle: projects[2].title,
       period: "2023",
       icon: Briefcase,
-      color: "teal",
     },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.18 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -30 },
+    hidden: { opacity: 0, x: -24 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
   };
 
   return (
-    <section id="timeline" className="py-24 bg-background">
+    <section id="timeline" className="py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-6">
-        <SectionHeader
-          label="Trayectoria"
-          title="Educación & Experiencia"
-          description="Mi camino en el desarrollo de software y gestión de proyectos"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+            Trayectoria
+          </h2>
+          <p className="text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">
+            Mi camino en el desarrollo de software y gestión de proyectos
+          </p>
+        </motion.div>
 
         <motion.div
           ref={ref}
@@ -104,13 +91,12 @@ export default function Timeline() {
           animate={isInView ? "visible" : "hidden"}
           className="relative"
         >
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-linear-to-b from-emerald-500 via-sky-500 to-teal-500" />
+          {/* Vertical line */}
+          <div className="absolute left-8 top-0 bottom-0 w-px bg-border" />
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {timelineItems.map((item, index) => {
               const Icon = item.icon;
-              const colors = COLOR_CLASSES[item.color];
 
               return (
                 <motion.div
@@ -118,32 +104,28 @@ export default function Timeline() {
                   variants={itemVariants}
                   className="relative pl-20"
                 >
-                  {/* Timeline dot */}
-                  <div
-                    className={`absolute left-6 w-5 h-5 rounded-full ${colors.dot} border-4 border-background -translate-x-1/2`}
-                  />
+                  {/* Dot */}
+                  <div className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background -translate-x-1/2" />
 
                   {/* Card */}
                   <motion.div
-                    className={`p-6 rounded-2xl ${colors.bg} border ${colors.border} shadow-sm transition-all duration-300`}
-                    whileHover={{ x: 5 }}
+                    className="p-5 rounded-xl bg-background border border-border hover:border-primary/40 transition-colors duration-300"
+                    whileHover={{ x: 4 }}
                   >
                     <div className="flex items-start gap-4">
-                      <div
-                        className={`w-12 h-12 rounded-xl ${colors.bg} border ${colors.border} flex items-center justify-center shrink-0`}
-                      >
-                        <Icon className={`w-6 h-6 ${colors.icon}`} />
+                      <div className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-primary" />
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm mb-1">
-                          <Calendar className="w-4 h-4 shrink-0" />
+                        <div className="flex items-center gap-2 text-text-secondary text-xs mb-1.5">
+                          <Calendar className="w-3.5 h-3.5 shrink-0" />
                           <span>{item.period}</span>
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-1">
+                        <h3 className="text-base font-semibold text-text-primary mb-1">
                           {item.title}
                         </h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm">
+                        <p className="text-text-secondary text-sm leading-relaxed">
                           {item.subtitle}
                         </p>
                       </div>

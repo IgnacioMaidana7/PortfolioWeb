@@ -34,14 +34,12 @@ export default function Projects() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 32 },
     visible: {
       opacity: 1,
       y: 0,
@@ -54,8 +52,8 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeader
           label="Portfolio"
-          title="Proyectos Destacados"
-          description="Proyectos académicos que demuestran mis habilidades técnicas y de liderazgo"
+          title="Proyectos"
+          description="Proyectos académicos que demuestran habilidades técnicas y de liderazgo"
         />
 
         <motion.div
@@ -63,7 +61,7 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-6"
+          className="grid md:grid-cols-2 gap-5"
         >
           {projects.map((project) => (
             <motion.div key={project.id} variants={cardVariants}>
@@ -76,7 +74,6 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      {/* Modal with AnimatePresence for smooth enter/exit */}
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal

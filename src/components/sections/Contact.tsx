@@ -12,7 +12,6 @@ import {
   Linkedin,
   Loader2,
 } from "lucide-react";
-import { SectionHeader } from "@/components/ui";
 import { portfolioData } from "@/data/portfolio";
 
 interface ContactInfoItem {
@@ -72,27 +71,36 @@ export default function Contact() {
   ];
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition-all shadow-sm";
+    "w-full px-4 py-3 rounded-lg bg-surface border border-border text-text-primary placeholder:text-text-secondary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all text-sm";
 
   return (
     <section id="contact" className="py-24 bg-background">
       <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          label="Contacto"
-          title="Hablemos"
-          description="¿Tienes un proyecto en mente o una oportunidad laboral? Me encantaría escucharte."
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-text-primary">
+            Hablemos
+          </h2>
+          <p className="text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">
+            ¿Tienes un proyecto en mente o una oportunidad laboral? Me encantaría escucharte.
+          </p>
+        </motion.div>
 
         <div ref={ref} className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Form */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-1.5">
                   Nombre
                 </label>
                 <input
@@ -109,7 +117,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-1.5">
                   Email
                 </label>
                 <input
@@ -126,7 +134,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-1.5">
                   Mensaje
                 </label>
                 <textarea
@@ -145,112 +153,106 @@ export default function Contact() {
               <motion.button
                 type="submit"
                 disabled={isLoading}
-                className="group w-full flex items-center justify-center gap-2 px-8 py-4 bg-linear-to-r from-emerald-600 to-sky-600 dark:from-emerald-500 dark:to-sky-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={!isLoading ? { scale: 1.02 } : {}}
-                whileTap={!isLoading ? { scale: 0.98 } : {}}
+                className="w-full flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary-hover transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={!isLoading ? { scale: 1.01 } : {}}
+                whileTap={!isLoading ? { scale: 0.99 } : {}}
               >
                 {isLoading ? (
-                  <><Loader2 className="w-5 h-5 animate-spin" />Enviando...</>
+                  <><Loader2 className="w-4 h-4 animate-spin" />Enviando...</>
                 ) : (
-                  <><Send className="w-5 h-5" />Enviar Propuesta</>
+                  <><Send className="w-4 h-4" />Enviar mensaje</>
                 )}
               </motion.button>
 
               {submitStatus === "success" && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/30 text-emerald-700 dark:text-emerald-400 text-center font-medium"
+                  className="p-4 rounded-lg border border-border bg-surface text-text-primary text-center text-sm font-medium"
                 >
-                  ¡Mensaje enviado con éxito!
+                  Mensaje enviado correctamente.
                 </motion.div>
               )}
 
               {submitStatus === "error" && (
                 <motion.div
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 text-red-700 dark:text-red-400 text-center font-medium"
+                  className="p-4 rounded-lg border border-border bg-surface text-primary text-center text-sm font-medium"
                 >
-                  Hubo un error, intenta de nuevo
+                  Hubo un error, intenta de nuevo.
                 </motion.div>
               )}
             </form>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Info */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="space-y-6"
+            transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-4"
           >
-            <div className="space-y-4">
-              {contactInfo.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.label}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-border shadow-sm"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                    </div>
-                    <div>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm">{item.label}</p>
-                      <p className="text-slate-900 dark:text-slate-50 font-medium">{item.value}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+            {contactInfo.map((item) => {
+              const Icon = item.icon;
+              const content = (
+                <div className="flex items-center gap-4 p-4 rounded-lg bg-surface border border-border hover:border-primary/40 transition-colors duration-200">
+                  <div className="w-10 h-10 rounded-lg border border-border bg-background flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-text-secondary text-xs mb-0.5">{item.label}</p>
+                    <p className="text-text-primary font-medium text-sm">{item.value}</p>
+                  </div>
+                </div>
+              );
 
-            {/* Social links */}
-            <div className="pt-6 border-t border-slate-200 dark:border-border">
-              <p className="text-slate-500 dark:text-slate-400 text-sm mb-4">Encuéntrame en</p>
-              <div className="flex gap-4">
-                <motion.a
+              return item.href ? (
+                <a key={item.label} href={item.href}>
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label}>{content}</div>
+              );
+            })}
+
+            <div className="pt-4 border-t border-border">
+              <p className="text-text-secondary text-xs mb-3">Redes sociales</p>
+              <div className="flex gap-3">
+                <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-border flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 hover:border-emerald-500/40 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 transition-all duration-300"
-                  whileHover={{ y: -2 }}
+                  className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center text-text-secondary hover:border-primary hover:text-primary transition-colors duration-200"
                 >
-                  <Github className="w-5 h-5" />
-                </motion.a>
-                <motion.a
+                  <Github className="w-4 h-4" />
+                </a>
+                <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-border flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 hover:border-sky-500/40 hover:bg-sky-50 dark:hover:bg-sky-500/10 transition-all duration-300"
-                  whileHover={{ y: -2 }}
+                  className="w-10 h-10 rounded-lg border border-border bg-surface flex items-center justify-center text-text-secondary hover:border-primary hover:text-primary transition-colors duration-200"
                 >
-                  <Linkedin className="w-5 h-5" />
-                </motion.a>
+                  <Linkedin className="w-4 h-4" />
+                </a>
               </div>
             </div>
 
-            {/* CTA Card */}
-            <motion.div
-              className="p-6 rounded-2xl bg-linear-to-br from-emerald-50 to-sky-50 dark:from-emerald-600/8 dark:to-sky-600/8 border border-emerald-300 dark:border-emerald-500/20 shadow-sm"
-              whileHover={{ scale: 1.02 }}
-            >
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-2">
-                ¿Listo para trabajar juntos?
+            <div className="p-5 rounded-xl border border-border bg-surface">
+              <h3 className="font-semibold text-text-primary mb-2 text-sm">
+                Abierto a nuevas oportunidades
               </h3>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">
-                Estoy buscando mi primera experiencia IT y estoy comprometido a dar
-                lo mejor de mí en cada proyecto.
+              <p className="text-text-secondary text-sm leading-relaxed mb-3">
+                Desarrollador Frontend en actividad, siempre abierto a proyectos desafiantes y oportunidades de crecimiento.
               </p>
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:text-primary-hover transition-colors"
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-3.5 h-3.5" />
                 {personalInfo.email}
               </a>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -21,13 +21,13 @@ export default function AnimatedArrow({ onClick }: AnimatedArrowProps) {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <ChevronDown className="w-8 h-8 text-slate-400 dark:text-slate-500 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors" />
+        <ChevronDown className="w-8 h-8 text-text-secondary group-hover:text-primary transition-colors" />
       </motion.div>
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.15 }}
       >
-        <ChevronDown className="w-8 h-8 text-slate-300 dark:text-slate-600 group-hover:text-emerald-400 dark:group-hover:text-emerald-500 transition-colors -mt-5" />
+        <ChevronDown className="w-8 h-8 text-border group-hover:text-primary/60 transition-colors -mt-5" />
       </motion.div>
     </motion.button>
   );

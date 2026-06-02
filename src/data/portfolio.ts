@@ -1,14 +1,14 @@
 export const portfolioData = {
   personalInfo: {
     name: "Ignacio Maidana",
-    title: "Full Stack Developer & PM en formación",
+    title: "Frontend Developer · Full Stack & Gestión de Proyectos",
     location: "Arroyito, Córdoba, Argentina",
     email: "ignacio.maidana001@gmail.com",
     phone: "93576414844",
     github: "https://github.com/IgnacioMaidana7",
     linkedin: "https://www.linkedin.com/in/ignacio-maidana-3a2b40265/",
     summary:
-      "Estudiante avanzado de Ingeniería en Sistemas con sólida orientación a la gestión de proyectos tecnológicos y desarrollo de software. Experiencia liderando y desarrollando proyectos académicos con integración de hardware/software y metodologías ágiles. Busco mi primera experiencia profesional para aportar valor mediante código limpio y liderazgo colaborativo.",
+      "Desarrollador Frontend en Cloudnet Solutions. Estudiante avanzado de Ingeniería en Sistemas con experiencia en desarrollo Full Stack y liderazgo de proyectos con metodologías ágiles. Combino habilidades técnicas sólidas con una visión orientada a la gestión para construir software de calidad.",
   },
   education: [
     {
