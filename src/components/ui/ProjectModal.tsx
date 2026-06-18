@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { X, Sparkles, Target, Lightbulb, Wrench, AlertTriangle, User } from "lucide-react";
+import { X, Sparkles, Target, Lightbulb, Wrench, AlertTriangle, User, Github, ExternalLink } from "lucide-react";
 import ImageGallery from "./ImageGallery";
 
 interface ProjectDetails {
@@ -22,6 +22,8 @@ interface Project {
     highlights: string[];
     images: string[];
     details?: ProjectDetails;
+    repo?: string;
+    demo?: string;
 }
 
 interface ProjectModalProps {
@@ -217,6 +219,34 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                             </div>
                         </div>
                     </div>
+
+                    {/* Links — repo & demo (only if provided) */}
+                    {(project.repo || project.demo) && (
+                        <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-border">
+                            {project.repo && (
+                                <a
+                                    href={project.repo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-background border border-border text-text-primary text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+                                >
+                                    <Github className="w-4 h-4" />
+                                    Repositorio
+                                </a>
+                            )}
+                            {project.demo && (
+                                <a
+                                    href={project.demo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:bg-primary-hover transition-colors"
+                                >
+                                    <ExternalLink className="w-4 h-4" />
+                                    Demo en vivo
+                                </a>
+                            )}
+                        </div>
+                    )}
                 </motion.div>
             </div>
         </>

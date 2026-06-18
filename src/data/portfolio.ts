@@ -1,14 +1,14 @@
 export const portfolioData = {
   personalInfo: {
     name: "Ignacio Maidana",
-    title: "Frontend Developer · Full Stack & Gestión de Proyectos",
+    title: "Análisis de Datos · Full Stack & Gestión de Proyectos",
     location: "Arroyito, Córdoba, Argentina",
     email: "ignacio.maidana001@gmail.com",
     phone: "93576414844",
     github: "https://github.com/IgnacioMaidana7",
     linkedin: "https://www.linkedin.com/in/ignacio-maidana-3a2b40265/",
     summary:
-      "Desarrollador Frontend en Cloudnet Solutions. Estudiante avanzado de Ingeniería en Sistemas con experiencia en desarrollo Full Stack y liderazgo de proyectos con metodologías ágiles. Combino habilidades técnicas sólidas con una visión orientada a la gestión para construir software de calidad.",
+      "Estudiante avanzado de Ingeniería en Sistemas con experiencia en desarrollo Full Stack, análisis de datos y liderazgo de proyectos con metodologías ágiles. Combino habilidades técnicas, capacidad analítica para extraer insights a partir de datos y una visión orientada a la gestión para construir software de calidad.",
   },
   education: [
     {
@@ -38,6 +38,12 @@ export const portfolioData = {
       "Matplotlib",
       "Data Analysis",
       "Data Visualization",
+      "Power BI",
+      "Excel Avanzado",
+      "Jupyter Notebook",
+      "Limpieza de Datos (ETL)",
+      "Estadística Descriptiva",
+      "SQL para Análisis",
       "IoT (ESP32)",
       "Linux",
       "Docker",
@@ -161,6 +167,32 @@ export const portfolioData = {
         obstacles: "El mayor reto fue diseñar tests que cubrieran todos los edge cases del flujo de compra: pagos fallidos, timeouts, intentos de uso múltiple del mismo QR, y concurrencia en eventos con alta demanda de entradas.",
         myRole: "Diseñé e implementé la estrategia de testing del proyecto. Creé pruebas unitarias para la lógica de negocio, tests de integración para la API, y automaticé la ejecución en el pipeline de CI/CD. Documenté los casos de prueba y reporté bugs al equipo de desarrollo."
       }
+    },
+    {
+      id: "prode-mundial",
+      title: "Prode Mundial 2026",
+      role: "Desarrollador Full Stack",
+      desc: "Aplicación de pronósticos deportivos para el Mundial 2026 desarrollada para jugar con amigos. Carga de partidos, tabla de posiciones en tiempo real y diseño 100% mobile-first.",
+      tech: ["Vite", "React", "Supabase", "TailwindCSS"],
+      highlights: [
+        "Pronósticos de partidos en tiempo real",
+        "Tabla de posiciones general",
+        "100% responsive / mobile-first",
+      ],
+      images: [
+        "/images/proyectoProde/prodeHome.png",
+        "/images/proyectoProde/prodePartidos.png",
+        "/images/proyectoProde/prodeTabla.png",
+      ],
+      details: {
+        challenge: "Con el Mundial 2026 acercándose, quería organizar un juego de pronósticos con un grupo de amigos. Las alternativas existentes eran aplicaciones genéricas con publicidad o planillas de cálculo poco prácticas de completar desde el celular, especialmente durante los partidos.",
+        solution: "Desarrollé una aplicación web con Vite y Supabase donde cada participante carga sus pronósticos antes de cada fecha. La app muestra los partidos vigentes, calcula los puntos automáticamente según los resultados reales y mantiene una tabla de posiciones general que se actualiza en tiempo real.",
+        decisions: "Elegí Vite por su arranque rápido y build optimizado, ideal para una app que todos abren desde el celular. Supabase me dio autenticación, base de datos PostgreSQL y actualizaciones en tiempo real sin tener que levantar un backend propio. TailwindCSS aceleró el responsive design mobile-first, condición clave porque todos entran desde el teléfono.",
+        obstacles: "El mayor desafío fue sincronizar los pronósticos con los resultados reales y calcular los puntos de forma justa. También tuve que manejar fechas y horas de partidos en distintas zonas horarias, y bloquear la carga de pronósticos una vez iniciado cada partido.",
+        myRole: "Fui responsable del desarrollo full stack, desde el diseño de la base de datos en Supabase hasta la interfaz mobile-first. Implementé la lógica de cálculo de puntos, la tabla de posiciones en tiempo real y el despliegue en Vercel."
+      },
+      repo: "https://github.com/IgnacioMaidana7/prode-jovenes",
+      demo: "https://prode-jovenes.vercel.app/",
     },
   ],
 };

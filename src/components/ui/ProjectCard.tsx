@@ -20,6 +20,8 @@ interface Project {
   highlights: string[];
   images: string[];
   details?: ProjectDetails;
+  repo?: string;
+  demo?: string;
 }
 
 interface ProjectCardProps {

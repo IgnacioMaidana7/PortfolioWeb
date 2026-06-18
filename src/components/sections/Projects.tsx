@@ -22,6 +22,8 @@ interface Project {
   highlights: string[];
   images: string[];
   details?: ProjectDetails;
+  repo?: string;
+  demo?: string;
 }
 
 export default function Projects() {

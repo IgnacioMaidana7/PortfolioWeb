@@ -10,22 +10,26 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Ignacio Maidana | Full Stack Developer & PM",
+  title: "Ignacio Maidana | Analista de Datos & Full Stack",
   description:
-    "Portfolio de Ignacio Maidana - Desarrollador Full Stack y Project Manager en formación. Estudiante de Ingeniería en Sistemas con experiencia en React, Node.js, Python y metodologías ágiles.",
+    "Portfolio de Ignacio Maidana - Analista de datos y desarrollador Full Stack en formación. Estudiante de Ingeniería en Sistemas con experiencia en React, Node.js, Python, Power BI y metodologías ágiles.",
   keywords: [
+    "Analista de Datos",
+    "Data Analyst",
     "Full Stack Developer",
+    "Power BI",
+    "Python",
+    "Pandas",
     "Project Manager",
     "React",
     "Node.js",
-    "Python",
     "Argentina",
   ],
   authors: [{ name: "Ignacio Maidana" }],
   openGraph: {
-    title: "Ignacio Maidana | Full Stack Developer & PM",
+    title: "Ignacio Maidana | Analista de Datos & Full Stack",
     description:
-      "Desarrollador Full Stack y Project Manager en formación buscando su primera experiencia IT.",
+      "Analista de datos y desarrollador Full Stack en formación. Estudiante de Ingeniería en Sistemas con experiencia en análisis de datos, desarrollo web y metodologías ágiles.",
     type: "website",
     locale: "es_AR",
   },

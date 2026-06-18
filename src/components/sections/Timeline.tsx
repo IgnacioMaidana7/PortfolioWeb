@@ -24,7 +24,7 @@ export default function Timeline() {
       type: "project",
       title: "Desarrollador Frontend",
       subtitle: "Cloudnet Solutions",
-      period: "Feb 2026 - Actualidad",
+      period: "Feb 2026 - Jun 2026",
       icon: Briefcase,
     },
     {

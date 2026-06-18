@@ -91,9 +91,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.65, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
-              Desarrollador Frontend en Cloudnet Solutions. Ingeniería en
-              Sistemas con experiencia en desarrollo Full Stack y gestión ágil
-              de proyectos tecnológicos.
+              Estudiante avanzado de Ingeniería en Sistemas con
+              experiencia en desarrollo Full Stack, análisis de datos y
+              gestión ágil de proyectos tecnológicos.
             </motion.p>
 
             <motion.div

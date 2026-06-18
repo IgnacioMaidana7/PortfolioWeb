@@ -8,7 +8,7 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 import { portfolioData } from "@/data/portfolio";
 
 const aboutStats = [
-  { value: "4", label: "Proyectos" },
+  { value: "5", label: "Proyectos" },
   { value: "15+", label: "Tecnologías" },
   { value: "2", label: "Roles" },
 ];
@@ -106,9 +106,9 @@ export default function About() {
             <div className="pt-5 border-t border-border">
               <p className="text-text-secondary text-sm leading-relaxed">
                 <span className="text-text-primary font-semibold">
-                  Desarrollador Frontend en Cloudnet Solutions
+                  Analista de datos y estudiante avanzado de Ingeniería en Sistemas
                 </span>{" "}
-                con experiencia en desarrollo Full Stack y gestión de proyectos tecnológicos.
+                con experiencia en desarrollo Full Stack, análisis de datos y gestión de proyectos tecnológicos.
               </p>
             </div>
           </motion.div>
